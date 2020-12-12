@@ -1,78 +1,65 @@
-//
-// Created by User on 30.11.2020.
-//
 #include <string>
 using namespace std;
 #ifndef LAB5_BUG_H
 #define LAB5_BUG_H
 class Bug {
-private:
-    string Description;
-    string Deadline;
-    string Status;
-    string Developer;
-    int Severity;
-public:
-    Bug() {
+    private:
+        string Description;
+        string Deadline;
+        string Status;
+        string Developer;
+        int Severity;
+    public:
+        Bug() {}
 
-    }
+        Bug(string vDescription, string vDeadline, string vStatus, string vDeveloper, int vSeverity) {
+            Description = vDescription;
+            Deadline = vDeadline;
+            Status = vStatus;
+            Developer = vDeveloper;
+            Severity = vSeverity;
+        }
 
-    Bug(string vDescription, string vDeadline, string vStatus, string vDeveloper, int vSeverity) {
-        Description = vDescription;
-        Deadline = vDeadline;
-        Status = vStatus;
-        Developer = vDeveloper;
-        Severity = vSeverity;
-    }
+        ~Bug() {}
 
-    ~Bug() {
+        string GetDescription() {
+            return Description;
+        }
 
-    }
+        string GetDeadline() {
+            return Deadline;
+        }
 
-    string GetDescription() {
-        return Description;
-    }
+        string GetStatus() {
+            return Status;
+        }
 
-    string GetDeadline() {
-        return Deadline;
-    }
+        string GetDeveloper() {
+            return Developer;
+        }
 
-    string GetStatus() {
-        return Status;
-    }
+        int GetSeverity() {
+            return Severity;
+        }
 
-    string GetDeveloper() {
-        return Developer;
-    }
+        void SetDescription(string vDescription) {
+            Description = vDescription;
+        }
 
-    int GetSeverity() {
-        return Severity;
-    }
+        void SetDeadline(string vDeadline) {
+            Deadline = vDeadline;
+        }
 
-    void SetDescription(string vDescription) {
-        Description = vDescription;
-    }
+        void SetStatus(string vStatus) {
+            Status = vStatus;
+        }
 
-    void SetDeadline(string vDeadline) {
-        Deadline = vDeadline;
-    }
+        void SetDeveloper(string vDeveloper) {
+            Developer = vDeveloper;
+        }
 
-    void SetStatus(string vStatus) {
-        Status = vStatus;
-    }
-
-    void SetDeveloper(string vDeveloper) {
-        Developer = vDeveloper;
-    }
-
-    void SetSeverity(int vSeverity) {
-        Severity = vSeverity;
-    }
+        void SetSeverity(int vSeverity) {
+            Severity = vSeverity;
+        }
 };
-
-
-
-
-
-
 #endif //LAB5_BUG_H

@@ -1,66 +1,62 @@
 #include <iostream>
 #include <string>
 #include "Bug.h"
-#define N 3
+#define SIZE 3
 
 using namespace std;
 
 class Backlog {
-public:
+    public:
 
-    void OutPutDev(Bug List[], string Dev) {
-        cout << "======================================================" << endl;
-        for (int i = 0; i < N; i++) {
-            if (List[i].GetDeveloper() == Dev && List[i].GetStatus() == "RESOLVED")  {
-                OutPutObj(List[i]);
+        void OutPutDev(Bug bugsArray[], string Dev) {
+            cout << "======================================================" << endl;
+            for (int i = 0; i < SIZE; i++) {
+                if (bugsArray[i].GetDeveloper() == Dev && bugsArray[i].GetStatus() == "RESOLVED")  {
+                    OutPutObj(bugsArray[i]);
+                }
             }
+            cout << "======================================================" << endl;
         }
-        cout << "======================================================" << endl;
-    }
 
-    void SortBacklog(Bug List[]) {
-        Bug a;
-        for (int k = 1; k < N; k++) {
-            for (int i = 0; i < N-k; i++) {
-                if (List[i].GetSeverity() > List[i+1].GetSeverity()) {
-                    a = List[i];
-                    List[i] = List[i+1];
-                    List[i+1] = a;
+        void BubbleSortBacklog(Bug bugsArray[]) {
+            Bug bug;
+            for (int k = 1; k < SIZE; k++) {
+                for (int i = 0; i < SIZE - k; i++) {
+                    if (bugsArray[i].GetSeverity() > bugsArray[i+1].GetSeverity()) {
+                        bug = bugsArray[i];
+                        bugsArray[i] = bugsArray[i + 1];
+                        bugsArray[i + 1] = bug;
+                    }
                 }
             }
         }
-    }
 
-    void OutPutObj(Bug Obj) {
-        cout << "Description - " << Obj.GetDescription() << ";\t" << "Deadline - " << Obj.GetDeadline()
-        << ";\t" << "Status - " << Obj.GetStatus() << ";\t" << "Developer - " << Obj.GetDeveloper()
-        << ";\t" << "Severity - " << Obj.GetSeverity() << ";\t" << endl;
-    }
+        void OutPutObj(Bug obj) {
+            cout << "Description - " << obj.GetDescription() << ";\t" << "Deadline - " << obj.GetDeadline()
+            << ";\t" << "Status - " << obj.GetStatus() << ";\t" << "Developer - " << obj.GetDeveloper()
+            << ";\t" << "Severity - " << obj.GetSeverity() << ";\t" << endl;
+        }
 
-    void OutPutList(Bug List[]) ;
-
-
+        void OutPutArray(Bug bugsArray[]) ;
 };
 
-void Backlog:: OutPutList(Bug List[]) {
+void Backlog::OutPutArray(Bug bugsArray[]) {
     cout << "======================================================" << endl;
-    for (int i = 0; i < N; i++) {
-        cout << i + 1 << endl;
-        OutPutObj(List[i]);
+    for (int i = 0; i < SIZE; i++) {
+        OutPutObj(bugsArray[i]);
         cout << endl;
     }
     cout << "======================================================" << endl;
 }
 
 int main() {
-    Bug List[N];
-    for (int i = 0; i < N; i++) {
+    Bug bugsArray[SIZE];
+    for (int i = 0; i < SIZE; i++) {
         string Description;
         string Deadline;
         string Status;
         string Developer;
         int Severity;
-        cout << i + 1 << endl;
         cout << "Description = " ;
         cin >> Description;
         cout << "Deadline = " ;
@@ -71,13 +67,13 @@ int main() {
         cin >> Developer;
         cout << "Severity = " ;
         cin >> Severity;
-        Bug A(Description, Deadline, Status, Developer, Severity);
-        List[i] = A;
+        Bug bug(Description, Deadline, Status, Developer, Severity);
+        bugsArray[i] = bug;
     }
-    Backlog Obj;
-    Obj.OutPutDev(List, "Sasha");
-    Obj.SortBacklog(List);
-    Obj.OutPutList(List);
+    Backlog backlog;
+    backlog.OutPutDev(bugsArray, "Sasha");
+    backlog.BubbleSortBacklog(bugsArray);
+    backlog.OutPutArray(bugsArray);
 
     return 0;
 }
